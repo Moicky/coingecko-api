@@ -10,6 +10,13 @@ Install the package via npm:
 npm install @moicky/coingecko-api
 ```
 
+## Documentation
+
+For full details on API endpoints and usage, refer to the following documentation:
+
+- [Public API Documentation](./docs/public/README.md)
+- [Pro API Documentation](./docs/pro/README.md)
+
 ## Usage
 
 The wrapper exports modules for both public and pro endpoints. Here’s an example of how to use them:
@@ -42,12 +49,30 @@ const coinsAPI = new CoinsApi(
 await coinsAPI.coinsIdCirculatingSupplyChart({ id: "bitcoin", days: "2" });
 ```
 
-## Documentation
+## Contributing
 
-For full details on API endpoints and usage, refer to the following documentation:
+To contribute to this project by adding new or updated API endpoints, follow these steps:
 
-- [Public API Documentation](./docs/public/README.md)
-- [Pro API Documentation](./docs/pro/README.md)
+1. Open [generate.js](./generate.js) and add the new Swagger JSON file URL to the `swaggerConfigs` object. For example:
+
+   ```typescript
+   // Source: https://docs.coingecko.com/v3.0.1/docs/clients-unofficial#swagger-json-official
+   const swaggerConfigs = {
+     public: "https://docs.coingecko.com/openapi/65bf9cabb0951b0072e2cade",
+     pro: "https://docs.coingecko.com/openapi/6584ea6ce07e130056b1af99",
+     // Add new configs here
+   };
+   ```
+
+2. Run the generation script to fetch the latest API definitions and generate TypeScript clients and docs:
+
+   ```bash
+   npm run generate
+   ```
+
+3. After running the command, the generated files will be located in the appropriate folder within `./generated` and `./dist`.
+
+4. Test your changes and submit a pull request!
 
 ## License
 

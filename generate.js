@@ -5,7 +5,7 @@ import { promisify } from "util";
 
 const execAsync = promisify(exec);
 
-// Source: https://docs.coingecko.com/v3.0.1/docs/clients-unofficial
+// Source: https://docs.coingecko.com/v3.0.1/docs/clients-unofficial#swagger-json-official
 const swaggerConfigs = {
   public: "https://docs.coingecko.com/openapi/65bf9cabb0951b0072e2cade",
   pro: "https://docs.coingecko.com/openapi/6584ea6ce07e130056b1af99",
