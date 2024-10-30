@@ -1,0 +1,28 @@
+{
+  "name": "@moicky/coingecko-api",
+  "version": "3.1.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "generate": "node ./generate.js && tsc"
+  },
+  "keywords": [],
+  "exports": {
+    "./public": {
+      "default": "./dist/public/index.js",
+      "import": "./dist/public/index.js",
+      "types": "./dist/public/index.d.ts"
+    },
+    "./pro": {
+      "default": "./dist/pro/index.js",
+      "import": "./dist/pro/index.js",
+      "types": "./dist/pro/index.d.ts"
+    }
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.15.0",
+    "typescript": "^5.6.3"
+  }
+}
