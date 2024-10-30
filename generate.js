@@ -13,14 +13,22 @@ const swaggerConfigs = {
 
 const tempDir = resolve("temp");
 const generatedDir = resolve("generated");
+const docsDir = resolve("docs");
 
 // Reset generated directory
 if (existsSync(generatedDir)) rmSync(generatedDir, { recursive: true });
+if (existsSync(docsDir)) rmSync(docsDir, { recursive: true });
 
 // Create temp directory
 if (!existsSync(tempDir)) mkdirSync(tempDir);
 
 mkdirSync(generatedDir);
+mkdirSync(docsDir);
+
+const cleanup = (dir) => {
+  rmSync(resolve(dir, ".openapi-generator"), { recursive: true });
+  rmSync(resolve(dir, ".openapi-generator-ignore"));
+};
 
 Promise.all(
   Object.entries(swaggerConfigs).map(async ([key, url]) => {
@@ -34,17 +42,22 @@ Promise.all(
     console.log(`Downloaded ${key}.json: ${info.title}: (${info.version})`);
 
     const outputDir = resolve(generatedDir, key);
-
     if (!existsSync(outputDir)) await mkdirSync(outputDir, { recursive: true });
 
     const command = `openapi-generator-cli generate -i ${jsonFilePath} -g typescript-fetch -o ${outputDir} --skip-validate-spec`;
     await execAsync(command);
-
-    // Clean up
-    rmSync(resolve(outputDir, ".openapi-generator"), { recursive: true });
-    rmSync(resolve(outputDir, ".openapi-generator-ignore"));
-
     console.log(`Generated client for ${key} API in ${outputDir}`);
+
+    const docsOutputDir = resolve(docsDir, key);
+    if (!existsSync(docsOutputDir))
+      await mkdirSync(docsOutputDir, { recursive: true });
+
+    const docsCommand = `openapi-generator-cli generate -i ${jsonFilePath} -g markdown -o ${docsOutputDir} --skip-validate-spec`;
+    await execAsync(docsCommand);
+    console.log(`Generated docs for ${key} API in ${docsOutputDir}`);
+
+    cleanup(outputDir);
+    cleanup(docsOutputDir);
   })
 )
   .then(() => rmSync(tempDir, { recursive: true }))

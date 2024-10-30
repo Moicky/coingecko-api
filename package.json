@@ -20,6 +20,11 @@
     }
   },
   "author": "",
+  "files": [
+    "dist",
+    "docs",
+    "readme.md"
+  ],
   "license": "MIT",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.15.0",
