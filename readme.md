@@ -16,6 +16,7 @@ For full details on API endpoints and usage, refer to the following documentatio
 
 - [Public API Documentation](./docs/public/README.md)
 - [Pro API Documentation](./docs/pro/README.md)
+- [Dex API Documentation](./docs/dex/README.md)
 
 ## Usage
 
