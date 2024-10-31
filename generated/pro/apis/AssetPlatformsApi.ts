@@ -34,9 +34,50 @@ export interface TokenListsRequest {
 }
 
 /**
+ * AssetPlatformsApi - interface
+ * 
+ * @export
+ * @interface AssetPlatformsApiInterface
+ */
+export interface AssetPlatformsApiInterface {
+    /**
+     * This endpoint allows you to **query all the asset platforms on CoinGecko**.
+     * @summary Asset Platforms List (ID Map)
+     * @param {'nft'} [filter] apply relevant filters to results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssetPlatformsApiInterface
+     */
+    assetPlatformsListRaw(requestParameters: AssetPlatformsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssetPlatforms>>;
+
+    /**
+     * This endpoint allows you to **query all the asset platforms on CoinGecko**.
+     * Asset Platforms List (ID Map)
+     */
+    assetPlatformsList(requestParameters: AssetPlatformsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AssetPlatforms>;
+
+    /**
+     * This endpoint allows you to **get full list of tokens of a blockchain network (asset platform) that is supported by [Ethereum token list standard](https://tokenlists.org/)**
+     * @summary 👑 Token Lists by Asset Platform ID
+     * @param {string} assetPlatformId asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssetPlatformsApiInterface
+     */
+    tokenListsRaw(requestParameters: TokenListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TokenLists>>;
+
+    /**
+     * This endpoint allows you to **get full list of tokens of a blockchain network (asset platform) that is supported by [Ethereum token list standard](https://tokenlists.org/)**
+     * 👑 Token Lists by Asset Platform ID
+     */
+    tokenLists(requestParameters: TokenListsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TokenLists>;
+
+}
+
+/**
  * 
  */
-export class AssetPlatformsApi extends runtime.BaseAPI {
+export class AssetPlatformsApi extends runtime.BaseAPI implements AssetPlatformsApiInterface {
 
     /**
      * This endpoint allows you to **query all the asset platforms on CoinGecko**.

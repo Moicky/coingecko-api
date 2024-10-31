@@ -27,9 +27,34 @@ export interface SearchDataRequest {
 }
 
 /**
+ * SearchApi - interface
+ * 
+ * @export
+ * @interface SearchApiInterface
+ */
+export interface SearchApiInterface {
+    /**
+     * This endpoint allows you to **search for coins, categories and markets listed on CoinGecko**.
+     * @summary Search Queries
+     * @param {string} query search query
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApiInterface
+     */
+    searchDataRaw(requestParameters: SearchDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Search>>;
+
+    /**
+     * This endpoint allows you to **search for coins, categories and markets listed on CoinGecko**.
+     * Search Queries
+     */
+    searchData(requestParameters: SearchDataRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Search>;
+
+}
+
+/**
  * 
  */
-export class SearchApi extends runtime.BaseAPI {
+export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
 
     /**
      * This endpoint allows you to **search for coins, categories and markets listed on CoinGecko**.

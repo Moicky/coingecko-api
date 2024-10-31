@@ -72,9 +72,139 @@ export interface NftsMarketsRequest {
 }
 
 /**
+ * NFTsBetaApi - interface
+ * 
+ * @export
+ * @interface NFTsBetaApiInterface
+ */
+export interface NFTsBetaApiInterface {
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.
+     * @summary NFTs Collection Data by Contract Address
+     * @param {string} assetPlatformId asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list)
+     * @param {string} contractAddress the contract address of token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsContractAddressRaw(requestParameters: NftsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTData>>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.
+     * NFTs Collection Data by Contract Address
+     */
+    nftsContractAddress(requestParameters: NftsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTData>;
+
+    /**
+     * This endpoint allows you **query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now based on the provided contract address**
+     * @summary 💼 NFTs Collection Historical Chart Data by Contract Address
+     * @param {string} assetPlatformId asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list)
+     * @param {string} contractAddress contract address of the nft collection
+     * @param {string} days data up to number of days ago &lt;br&gt; Valid values: any integer or max 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsContractAddressMarketChartRaw(requestParameters: NftsContractAddressMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTMarketChart>>;
+
+    /**
+     * This endpoint allows you **query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now based on the provided contract address**
+     * 💼 NFTs Collection Historical Chart Data by Contract Address
+     */
+    nftsContractAddressMarketChart(requestParameters: NftsContractAddressMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTMarketChart>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection id**.
+     * @summary NFTs Collection Data by ID
+     * @param {string} id NFTs id &lt;br&gt; *refers to [&#x60;/nfts/list&#x60;](/reference/nfts-list).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsIdRaw(requestParameters: NftsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTData>>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection id**.
+     * NFTs Collection Data by ID
+     */
+    nftsId(requestParameters: NftsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTData>;
+
+    /**
+     * This endpoint allows you **query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now**
+     * @summary 💼 NFTs Collection Historical Chart Data by ID
+     * @param {string} id NFTs id &lt;br&gt; *refers to [&#x60;/nfts/list&#x60;](/reference/nfts-list).
+     * @param {string} days data up to number of days  &lt;br&gt; Valid values: any integer or max 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsIdMarketChartRaw(requestParameters: NftsIdMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTMarketChart>>;
+
+    /**
+     * This endpoint allows you **query historical market data of a NFT collection, including floor price, market cap, and 24h volume, by number of days away from now**
+     * 💼 NFTs Collection Historical Chart Data by ID
+     */
+    nftsIdMarketChart(requestParameters: NftsIdMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTMarketChart>;
+
+    /**
+     * This endpoint allows you to **query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare**
+     * @summary 💼 NFTs Collection Tickers by ID
+     * @param {string} id NFTs id &lt;br&gt; *refers to [&#x60;/nfts/list&#x60;](/reference/nfts-list).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsIdTickersRaw(requestParameters: NftsIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTTickers>>;
+
+    /**
+     * This endpoint allows you to **query the latest floor price and 24h volume of a NFT collection, on each NFT marketplace, e.g. OpenSea and LooksRare**
+     * 💼 NFTs Collection Tickers by ID
+     */
+    nftsIdTickers(requestParameters: NftsIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTTickers>;
+
+    /**
+     * This endpoint allows you to **query all supported NFTs with id, contract address, name, asset platform id and symbol on CoinGecko**.
+     * @summary NFTs List (ID Map)
+     * @param {'h24_volume_usd_asc' | 'h24_volume_usd_desc' | 'h24_volume_native_asc' | 'h24_volume_native_desc' | 'floor_price_native_asc' | 'floor_price_native_desc' | 'market_cap_native_asc' | 'market_cap_native_desc' | 'market_cap_usd_asc' | 'market_cap_usd_desc'} [order] use this to sort the order of responses
+     * @param {number} [perPage] total results per page &lt;br&gt; Valid values: 1...250
+     * @param {number} [page] page through results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsListRaw(requestParameters: NftsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTList>>;
+
+    /**
+     * This endpoint allows you to **query all supported NFTs with id, contract address, name, asset platform id and symbol on CoinGecko**.
+     * NFTs List (ID Map)
+     */
+    nftsList(requestParameters: NftsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTList>;
+
+    /**
+     * This endpoint allows you to **query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko**
+     * @summary 💼 NFTs List with Market Data
+     * @param {string} [assetPlatformId] filter result by asset platform (blockchain network)  &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list) filter&#x3D;&#x60;nft&#x60; 
+     * @param {'h24_volume_native_asc' | 'h24_volume_native_desc' | 'h24_volume_usd_asc' | 'h24_volume_usd_desc' | 'market_cap_usd_asc' | 'market_cap_usd_desc'} [order] sort results by field  &lt;br&gt; Default: &#x60;market_cap_usd_desc&#x60;
+     * @param {number} [perPage] total results per page  &lt;br&gt; Valid values: any integer between 1 and 250  &lt;br&gt; Default: &#x60;100&#x60;
+     * @param {number} [page] page through results  &lt;br&gt; Default: &#x60;1&#x60;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsMarketsRaw(requestParameters: NftsMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<NFTsMarketsInner>>>;
+
+    /**
+     * This endpoint allows you to **query all the supported NFT collections with floor price, market cap, volume and market related data on CoinGecko**
+     * 💼 NFTs List with Market Data
+     */
+    nftsMarkets(requestParameters: NftsMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<NFTsMarketsInner>>;
+
+}
+
+/**
  * 
  */
-export class NFTsBetaApi extends runtime.BaseAPI {
+export class NFTsBetaApi extends runtime.BaseAPI implements NFTsBetaApiInterface {
 
     /**
      * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.

@@ -9,6 +9,7 @@ const execAsync = promisify(exec);
 const swaggerConfigs = {
   public: "https://docs.coingecko.com/openapi/65bf9cabb0951b0072e2cade",
   pro: "https://docs.coingecko.com/openapi/6584ea6ce07e130056b1af99",
+  dex: "https://docs.coingecko.com/openapi/6585013ec2907b0031346aa4",
 };
 
 const tempDir = resolve("temp");
@@ -44,7 +45,7 @@ Promise.all(
     const outputDir = resolve(generatedDir, key);
     if (!existsSync(outputDir)) await mkdirSync(outputDir, { recursive: true });
 
-    const command = `openapi-generator-cli generate -i ${jsonFilePath} -g typescript-fetch -o ${outputDir} --skip-validate-spec`;
+    const command = `openapi-generator-cli generate -i ${jsonFilePath} -g typescript-fetch -o ${outputDir} --skip-validate-spec -c config.json`;
     await execAsync(command);
     console.log(`Generated client for ${key} API in ${outputDir}`);
 

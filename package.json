@@ -1,6 +1,6 @@
 {
   "name": "@moicky/coingecko-api",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "type": "module",
   "license": "MIT",
   "description": "TypeScript wrapper for the Coingecko public and pro APIs",
@@ -37,6 +37,11 @@
       "default": "./dist/pro/index.js",
       "import": "./dist/pro/index.js",
       "types": "./dist/pro/index.d.ts"
+    },
+    "./dex": {
+      "default": "./dist/dex/index.js",
+      "import": "./dist/dex/index.js",
+      "types": "./dist/dex/index.d.ts"
     }
   },
   "files": [

@@ -27,9 +27,34 @@ export interface AssetPlatformsListRequest {
 }
 
 /**
+ * AssetPlatformsApi - interface
+ * 
+ * @export
+ * @interface AssetPlatformsApiInterface
+ */
+export interface AssetPlatformsApiInterface {
+    /**
+     * This endpoint allows you to **query all the asset platforms on CoinGecko**.
+     * @summary Asset Platforms List (ID Map)
+     * @param {'nft'} [filter] apply relevant filters to results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof AssetPlatformsApiInterface
+     */
+    assetPlatformsListRaw(requestParameters: AssetPlatformsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AssetPlatforms>>;
+
+    /**
+     * This endpoint allows you to **query all the asset platforms on CoinGecko**.
+     * Asset Platforms List (ID Map)
+     */
+    assetPlatformsList(requestParameters: AssetPlatformsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AssetPlatforms>;
+
+}
+
+/**
  * 
  */
-export class AssetPlatformsApi extends runtime.BaseAPI {
+export class AssetPlatformsApi extends runtime.BaseAPI implements AssetPlatformsApiInterface {
 
     /**
      * This endpoint allows you to **query all the asset platforms on CoinGecko**.

@@ -52,9 +52,77 @@ export interface ContractAddressMarketChartRangeRequest {
 }
 
 /**
+ * ContractApi - interface
+ * 
+ * @export
+ * @interface ContractApiInterface
+ */
+export interface ContractApiInterface {
+    /**
+     * This endpoint allows you to **query all the coin data (name, price, market .... including exchange tickers) on CoinGecko coin page based on asset platform and particular token contract address**.
+     * @summary Coin Data by Token Address
+     * @param {string} id asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list).
+     * @param {string} contractAddress the contract address of token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContractApiInterface
+     */
+    coinsContractAddressRaw(requestParameters: CoinsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsContractAddress>>;
+
+    /**
+     * This endpoint allows you to **query all the coin data (name, price, market .... including exchange tickers) on CoinGecko coin page based on asset platform and particular token contract address**.
+     * Coin Data by Token Address
+     */
+    coinsContractAddress(requestParameters: CoinsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsContractAddress>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data including time in UNIX, price, market cap and 24hrs volume based on asset platform and particular token contract address**.
+     * @summary Coin Historical Chart Data by Token Address
+     * @param {string} id asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list).
+     * @param {string} contractAddress the contract address of token
+     * @param {string} vsCurrency target currency of market data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {string} days data up to number of days ago &lt;br&gt; you may use any integer for number of days
+     * @param {'daily'} [interval] data interval, leave empty for auto granularity Possible value: daily
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContractApiInterface
+     */
+    contractAddressMarketChartRaw(requestParameters: ContractAddressMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsMarketChart>>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data including time in UNIX, price, market cap and 24hrs volume based on asset platform and particular token contract address**.
+     * Coin Historical Chart Data by Token Address
+     */
+    contractAddressMarketChart(requestParameters: ContractAddressMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsMarketChart>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data within certain time range in UNIX along with price, market cap and 24hrs volume  based on asset platform and particular token contract address**.
+     * @summary Coin Historical Chart Data within Time Range by Token Address
+     * @param {string} id asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list)
+     * @param {string} contractAddress the contract address of token
+     * @param {string} vsCurrency target currency of market data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {number} from starting date in UNIX timestamp
+     * @param {number} to ending date in UNIX timestamp
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ContractApiInterface
+     */
+    contractAddressMarketChartRangeRaw(requestParameters: ContractAddressMarketChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsMarketChartRange>>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data within certain time range in UNIX along with price, market cap and 24hrs volume  based on asset platform and particular token contract address**.
+     * Coin Historical Chart Data within Time Range by Token Address
+     */
+    contractAddressMarketChartRange(requestParameters: ContractAddressMarketChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsMarketChartRange>;
+
+}
+
+/**
  * 
  */
-export class ContractApi extends runtime.BaseAPI {
+export class ContractApi extends runtime.BaseAPI implements ContractApiInterface {
 
     /**
      * This endpoint allows you to **query all the coin data (name, price, market .... including exchange tickers) on CoinGecko coin page based on asset platform and particular token contract address**.

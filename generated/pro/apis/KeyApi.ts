@@ -23,9 +23,33 @@ import {
 } from '../models/index';
 
 /**
+ * KeyApi - interface
+ * 
+ * @export
+ * @interface KeyApiInterface
+ */
+export interface KeyApiInterface {
+    /**
+     * This endpoint allows you to **monitor your account\'s API usage, including rate limits, monthly total credits, remaining credits, and more**.
+     * @summary 💼 API Usage
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof KeyApiInterface
+     */
+    apiUsageRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Key>>;
+
+    /**
+     * This endpoint allows you to **monitor your account\'s API usage, including rate limits, monthly total credits, remaining credits, and more**.
+     * 💼 API Usage
+     */
+    apiUsage(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Key>;
+
+}
+
+/**
  * 
  */
-export class KeyApi extends runtime.BaseAPI {
+export class KeyApi extends runtime.BaseAPI implements KeyApiInterface {
 
     /**
      * This endpoint allows you to **monitor your account\'s API usage, including rate limits, monthly total credits, remaining credits, and more**.

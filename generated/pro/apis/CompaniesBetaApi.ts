@@ -27,9 +27,34 @@ export interface CompaniesPublicTreasuryRequest {
 }
 
 /**
+ * CompaniesBetaApi - interface
+ * 
+ * @export
+ * @interface CompaniesBetaApiInterface
+ */
+export interface CompaniesBetaApiInterface {
+    /**
+     * This endpoint allows you **query public companies’ bitcoin or ethereum holdings**.
+     * @summary Public Companies Holdings
+     * @param {'bitcoin' | 'ethereum'} coinId coin id
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CompaniesBetaApiInterface
+     */
+    companiesPublicTreasuryRaw(requestParameters: CompaniesPublicTreasuryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CompaniesTreasury>>;
+
+    /**
+     * This endpoint allows you **query public companies’ bitcoin or ethereum holdings**.
+     * Public Companies Holdings
+     */
+    companiesPublicTreasury(requestParameters: CompaniesPublicTreasuryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CompaniesTreasury>;
+
+}
+
+/**
  * 
  */
-export class CompaniesBetaApi extends runtime.BaseAPI {
+export class CompaniesBetaApi extends runtime.BaseAPI implements CompaniesBetaApiInterface {
 
     /**
      * This endpoint allows you **query public companies’ bitcoin or ethereum holdings**.

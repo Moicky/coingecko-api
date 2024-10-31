@@ -23,9 +23,33 @@ import {
 } from '../models/index';
 
 /**
+ * ExchangeRatesApi - interface
+ * 
+ * @export
+ * @interface ExchangeRatesApiInterface
+ */
+export interface ExchangeRatesApiInterface {
+    /**
+     * This endpoint allows you to **query BTC exchange rates with other currencies**.
+     * @summary BTC-to-Currency Exchange Rates
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangeRatesApiInterface
+     */
+    exchangeRatesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExchangeRates>>;
+
+    /**
+     * This endpoint allows you to **query BTC exchange rates with other currencies**.
+     * BTC-to-Currency Exchange Rates
+     */
+    exchangeRates(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExchangeRates>;
+
+}
+
+/**
  * 
  */
-export class ExchangeRatesApi extends runtime.BaseAPI {
+export class ExchangeRatesApi extends runtime.BaseAPI implements ExchangeRatesApiInterface {
 
     /**
      * This endpoint allows you to **query BTC exchange rates with other currencies**.

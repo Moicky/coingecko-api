@@ -153,9 +153,307 @@ export interface CoinsTopGainersLosersRequest {
 }
 
 /**
+ * CoinsApi - interface
+ * 
+ * @export
+ * @interface CoinsApiInterface
+ */
+export interface CoinsApiInterface {
+    /**
+     * This endpoint allows you to **query all the coin data of a coin (name, price, market .... including exchange tickers) on CoinGecko coin page based on a particular coin id**.
+     * @summary Coin Data by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {boolean} [localization] include all the localized languages in the response, default: true
+     * @param {boolean} [tickers] include tickers data, default: true
+     * @param {boolean} [marketData] include market data, default: true
+     * @param {boolean} [communityData] include community data, default: true
+     * @param {boolean} [developerData] include developer data, default: true
+     * @param {boolean} [sparkline] include sparkline 7 days data, default: false
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdRaw(requestParameters: CoinsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsID>>;
+
+    /**
+     * This endpoint allows you to **query all the coin data of a coin (name, price, market .... including exchange tickers) on CoinGecko coin page based on a particular coin id**.
+     * Coin Data by ID
+     */
+    coinsId(requestParameters: CoinsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsID>;
+
+    /**
+     * This endpoint allows you to **query historical circulating supply of a coin by number of days away from now based on provided coin id**
+     * @summary 👑 Circulating Supply Chart by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} days data up to number of days ago  &lt;br&gt; Valid values: any integer or &#x60;max&#x60;
+     * @param {'daily'} [interval] data interval
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdCirculatingSupplyChartRaw(requestParameters: CoinsIdCirculatingSupplyChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **query historical circulating supply of a coin by number of days away from now based on provided coin id**
+     * 👑 Circulating Supply Chart by ID
+     */
+    coinsIdCirculatingSupplyChart(requestParameters: CoinsIdCirculatingSupplyChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query historical circulating supply of a coin, within a range of timestamp based on the provided coin id**
+     * @summary 👑 Circulating Supply chart within Time Range by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {number} from starting date in UNIX timestamp 
+     * @param {number} to ending date in UNIX timestamp 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdCirculatingSupplyChartRangeRaw(requestParameters: CoinsIdCirculatingSupplyChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **query historical circulating supply of a coin, within a range of timestamp based on the provided coin id**
+     * 👑 Circulating Supply chart within Time Range by ID
+     */
+    coinsIdCirculatingSupplyChartRange(requestParameters: CoinsIdCirculatingSupplyChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query the historical data (price, market cap, 24hrs volume, etc) at a given date for a coin based on a particular coin id**.
+     * @summary Coin Historical Data by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} date the date of data snapshot &lt;br&gt; Format: &#x60;dd-mm-yyyy&#x60;
+     * @param {boolean} [localization] include all the localized languages in response, default: true
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdHistoryRaw(requestParameters: CoinsIdHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsHistoricalData>>;
+
+    /**
+     * This endpoint allows you to **query the historical data (price, market cap, 24hrs volume, etc) at a given date for a coin based on a particular coin id**.
+     * Coin Historical Data by ID
+     */
+    coinsIdHistory(requestParameters: CoinsIdHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsHistoricalData>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data of a coin including time in UNIX, price, market cap and 24hrs volume based on particular coin id**.
+     * @summary Coin Historical Chart Data by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} vsCurrency target currency of market data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {string} days data up to number of days ago &lt;br&gt; you may use any integer or &#x60;max&#x60; for number of days
+     * @param {'5m' | 'hourly' | 'daily'} [interval] data interval, leave empty for auto granularity
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdMarketChartRaw(requestParameters: CoinsIdMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsMarketChart>>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data of a coin including time in UNIX, price, market cap and 24hrs volume based on particular coin id**.
+     * Coin Historical Chart Data by ID
+     */
+    coinsIdMarketChart(requestParameters: CoinsIdMarketChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsMarketChart>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data of a coin within certain time range in UNIX along with price, market cap and 24hrs volume based on particular coin id**.
+     * @summary Coin Historical Chart Data within Time Range by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} vsCurrency target currency of market data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {number} from starting date in UNIX timestamp 
+     * @param {number} to ending date in UNIX timestamp
+     * @param {'5m' | 'hourly' | 'daily'} [interval] data interval, leave empty for auto granularity 
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdMarketChartRangeRaw(requestParameters: CoinsIdMarketChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsMarketChartRange>>;
+
+    /**
+     * This endpoint allows you to **get the historical chart data of a coin within certain time range in UNIX along with price, market cap and 24hrs volume based on particular coin id**.
+     * Coin Historical Chart Data within Time Range by ID
+     */
+    coinsIdMarketChartRange(requestParameters: CoinsIdMarketChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsMarketChartRange>;
+
+    /**
+     * This endpoint allows you to **get the OHLC chart (Open, High, Low, Close) of a coin based on particular coin id**.
+     * @summary Coin OHLC Chart by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} vsCurrency target currency of price data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {'1' | '7' | '14' | '30' | '90' | '180' | '365' | 'max'} days data up to number of days ago 
+     * @param {'daily' | 'hourly'} [interval] data interval, leave empty for auto granularity
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdOhlcRaw(requestParameters: CoinsIdOhlcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **get the OHLC chart (Open, High, Low, Close) of a coin based on particular coin id**.
+     * Coin OHLC Chart by ID
+     */
+    coinsIdOhlc(requestParameters: CoinsIdOhlcRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **get the OHLC chart (Open, High, Low, Close) of a coin within a range of timestamp based on particular coin id**.
+     * @summary 💼 Coin OHLC Chart within Time Range by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} vsCurrency target currency of price data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {number} from starting date in UNIX timestamp
+     * @param {number} to ending date in UNIX timestamp
+     * @param {'daily' | 'hourly'} interval data interval
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdOhlcRangeRaw(requestParameters: CoinsIdOhlcRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **get the OHLC chart (Open, High, Low, Close) of a coin within a range of timestamp based on particular coin id**.
+     * 💼 Coin OHLC Chart within Time Range by ID
+     */
+    coinsIdOhlcRange(requestParameters: CoinsIdOhlcRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query the coin tickers on both centralized exchange (cex) and decentralized exchange (dex) based on a particular coin id**.
+     * @summary Coin Tickers by ID
+     * @param {string} id coin id &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} [exchangeIds] exchange id &lt;br&gt; *refers to [&#x60;/exchanges/list&#x60;](/reference/exchanges-list).
+     * @param {boolean} [includeExchangeLogo] include exchange logo, default: false
+     * @param {number} [page] page through results
+     * @param {'trust_score_desc' | 'trust_score_asc' | 'volume_desc' | 'volume_asc'} [order] use this to sort the order of responses, default: trust_score_desc
+     * @param {boolean} [depth] include 2% orderbook depth, ie. &#x60;cost_to_move_up_usd&#x60; and &#x60;cost_to_move_down_usd&#x60; &lt;br&gt; default: false
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdTickersRaw(requestParameters: CoinsIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsTickers>>;
+
+    /**
+     * This endpoint allows you to **query the coin tickers on both centralized exchange (cex) and decentralized exchange (dex) based on a particular coin id**.
+     * Coin Tickers by ID
+     */
+    coinsIdTickers(requestParameters: CoinsIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsTickers>;
+
+    /**
+     * This endpoint allows you to **query historical total supply of a coin by number of days away from now based on provided coin id**
+     * @summary 👑 Total Supply Chart by ID
+     * @param {string} id coin id  &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} days data up to number of days ago  &lt;br&gt; Valid values: any integer or &#x60;max&#x60;
+     * @param {'daily'} [interval] data interval
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdTotalSupplyChartRaw(requestParameters: CoinsIdTotalSupplyChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **query historical total supply of a coin by number of days away from now based on provided coin id**
+     * 👑 Total Supply Chart by ID
+     */
+    coinsIdTotalSupplyChart(requestParameters: CoinsIdTotalSupplyChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query historical total supply of a coin, within a range of timestamp based on the provided coin id**
+     * @summary 👑 Total Supply chart within time range by ID
+     * @param {string} id coin id  &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {number} from starting date in UNIX timestamp 
+     * @param {number} to ending date in UNIX timestamp 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsIdTotalSupplyChartRangeRaw(requestParameters: CoinsIdTotalSupplyChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **query historical total supply of a coin, within a range of timestamp based on the provided coin id**
+     * 👑 Total Supply chart within time range by ID
+     */
+    coinsIdTotalSupplyChartRange(requestParameters: CoinsIdTotalSupplyChartRangeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query all the supported coins on CoinGecko with coins id, name and symbol**.
+     * @summary Coins List (ID Map)
+     * @param {boolean} [includePlatform] include platform and token\&#39;s contract addresses, default: false
+     * @param {'active' | 'inactive'} [status] filter by status of coins, default: active
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsListRaw(requestParameters: CoinsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinsListInner>>>;
+
+    /**
+     * This endpoint allows you to **query all the supported coins on CoinGecko with coins id, name and symbol**.
+     * Coins List (ID Map)
+     */
+    coinsList(requestParameters: CoinsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinsListInner>>;
+
+    /**
+     * This endpoint allows you to **query the latest 200 coins that recently listed on CoinGecko**
+     * @summary 💼 Recently Added Coins
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsListNewRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<CoinsListNewInner>>>;
+
+    /**
+     * This endpoint allows you to **query the latest 200 coins that recently listed on CoinGecko**
+     * 💼 Recently Added Coins
+     */
+    coinsListNew(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<CoinsListNewInner>>;
+
+    /**
+     * This endpoint allows you to **query all the supported coins with price, market cap, volume and market related data**.
+     * @summary Coins List with Market Data
+     * @param {string} vsCurrency target currency of coins and market data &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {string} [ids] coins\&#39; ids, comma-separated if querying more than 1 coin.  &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} [category] filter based on coins\&#39; category &lt;br&gt; *refers to [&#x60;/coins/categories/list&#x60;](/reference/coins-categories-list).
+     * @param {'market_cap_asc' | 'market_cap_desc' | 'volume_asc' | 'volume_desc' | 'id_asc' | 'id_desc'} [order] sort result by field, default: market_cap_desc
+     * @param {number} [perPage] total results per page, default: 100 &lt;br&gt; Valid values: 1...250
+     * @param {number} [page] page through results, default: 1
+     * @param {boolean} [sparkline] include sparkline 7 days data, default: false
+     * @param {string} [priceChangePercentage] include price change percentage timeframe, comma-separated if query more than 1 price change percentage timeframe &lt;br&gt; Valid values: 1h, 24h, 7d, 14d, 30d, 200d, 1y
+     * @param {'ar' | 'bg' | 'cs' | 'da' | 'de' | 'el' | 'en' | 'es' | 'fi' | 'fr' | 'he' | 'hi' | 'hr' | 'hu' | 'id' | 'it' | 'ja' | 'ko' | 'lt' | 'nl' | 'no' | 'pl' | 'pt' | 'ro' | 'ru' | 'sk' | 'sl' | 'sv' | 'th' | 'tr' | 'uk' | 'vi' | 'zh' | 'zh-tw'} [locale] language background, default: en
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsMarketsRaw(requestParameters: CoinsMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CoinsMarkets>>;
+
+    /**
+     * This endpoint allows you to **query all the supported coins with price, market cap, volume and market related data**.
+     * Coins List with Market Data
+     */
+    coinsMarkets(requestParameters: CoinsMarketsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CoinsMarkets>;
+
+    /**
+     * This endpoint allows you to **query the top 30 coins with largest price gain and loss by a specific time duration**
+     * @summary 💼 Top Gainers & Losers
+     * @param {string} vsCurrency target currency of coins  &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {'1h' | '24h' | '7d' | '14d' | '30d' | '60d' | '1y'} [duration] filter result by time range &lt;br&gt; Default value: &#x60;24h&#x60;
+     * @param {'300' | '500' | '1000' | 'all'} [topCoins] filter result by market cap ranking (top 300 to 1000) or all coins (including coins that do not have market cap)  &lt;br&gt; Default value: &#x60;1000&#x60;
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CoinsApiInterface
+     */
+    coinsTopGainersLosersRaw(requestParameters: CoinsTopGainersLosersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<TopGainersLosersInner>>>;
+
+    /**
+     * This endpoint allows you to **query the top 30 coins with largest price gain and loss by a specific time duration**
+     * 💼 Top Gainers & Losers
+     */
+    coinsTopGainersLosers(requestParameters: CoinsTopGainersLosersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<TopGainersLosersInner>>;
+
+}
+
+/**
  * 
  */
-export class CoinsApi extends runtime.BaseAPI {
+export class CoinsApi extends runtime.BaseAPI implements CoinsApiInterface {
 
     /**
      * This endpoint allows you to **query all the coin data of a coin (name, price, market .... including exchange tickers) on CoinGecko coin page based on a particular coin id**.

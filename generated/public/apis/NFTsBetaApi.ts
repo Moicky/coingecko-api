@@ -41,9 +41,69 @@ export interface NftsListRequest {
 }
 
 /**
+ * NFTsBetaApi - interface
+ * 
+ * @export
+ * @interface NFTsBetaApiInterface
+ */
+export interface NFTsBetaApiInterface {
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.
+     * @summary NFTs Collection Data by Contract Address
+     * @param {string} assetPlatformId asset platform id &lt;br&gt; *refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list)
+     * @param {string} contractAddress the contract address of token
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsContractAddressRaw(requestParameters: NftsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTData>>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.
+     * NFTs Collection Data by Contract Address
+     */
+    nftsContractAddress(requestParameters: NftsContractAddressRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTData>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection id**.
+     * @summary NFTs Collection Data by ID
+     * @param {string} id NFTs id &lt;br&gt; *refers to [&#x60;/nfts/list&#x60;](/reference/nfts-list).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsIdRaw(requestParameters: NftsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTData>>;
+
+    /**
+     * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection id**.
+     * NFTs Collection Data by ID
+     */
+    nftsId(requestParameters: NftsIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTData>;
+
+    /**
+     * This endpoint allows you to **query all supported NFTs with id, contract address, name, asset platform id and symbol on CoinGecko**.
+     * @summary NFTs List (ID Map)
+     * @param {'h24_volume_usd_asc' | 'h24_volume_usd_desc' | 'h24_volume_native_asc' | 'h24_volume_native_desc' | 'floor_price_native_asc' | 'floor_price_native_desc' | 'market_cap_native_asc' | 'market_cap_native_desc' | 'market_cap_usd_asc' | 'market_cap_usd_desc'} [order] use this to sort the order of responses
+     * @param {number} [perPage] total results per page &lt;br&gt; Valid values: 1...250
+     * @param {number} [page] page through results
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NFTsBetaApiInterface
+     */
+    nftsListRaw(requestParameters: NftsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<NFTList>>;
+
+    /**
+     * This endpoint allows you to **query all supported NFTs with id, contract address, name, asset platform id and symbol on CoinGecko**.
+     * NFTs List (ID Map)
+     */
+    nftsList(requestParameters: NftsListRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<NFTList>;
+
+}
+
+/**
  * 
  */
-export class NFTsBetaApi extends runtime.BaseAPI {
+export class NFTsBetaApi extends runtime.BaseAPI implements NFTsBetaApiInterface {
 
     /**
      * This endpoint allows you to **query all the NFT data (name, floor price, 24 hr volume....) based on the nft collection contract address and respective asset platform**.

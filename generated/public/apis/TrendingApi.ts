@@ -23,9 +23,33 @@ import {
 } from '../models/index';
 
 /**
+ * TrendingApi - interface
+ * 
+ * @export
+ * @interface TrendingApiInterface
+ */
+export interface TrendingApiInterface {
+    /**
+     * This endpoint allows you **query trending search coins, nfts and categories on CoinGecko in the last 24 hours**.
+     * @summary Trending Search List
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof TrendingApiInterface
+     */
+    trendingSearchRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TrendingSearch>>;
+
+    /**
+     * This endpoint allows you **query trending search coins, nfts and categories on CoinGecko in the last 24 hours**.
+     * Trending Search List
+     */
+    trendingSearch(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TrendingSearch>;
+
+}
+
+/**
  * 
  */
-export class TrendingApi extends runtime.BaseAPI {
+export class TrendingApi extends runtime.BaseAPI implements TrendingApiInterface {
 
     /**
      * This endpoint allows you **query trending search coins, nfts and categories on CoinGecko in the last 24 hours**.

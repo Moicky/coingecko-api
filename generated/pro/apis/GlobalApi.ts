@@ -34,9 +34,65 @@ export interface GlobalMarketCapChartRequest {
 }
 
 /**
+ * GlobalApi - interface
+ * 
+ * @export
+ * @interface GlobalApiInterface
+ */
+export interface GlobalApiInterface {
+    /**
+     * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.
+     * @summary Crypto Global Market Data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GlobalApiInterface
+     */
+    cryptoGlobalRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Global>>;
+
+    /**
+     * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.
+     * Crypto Global Market Data
+     */
+    cryptoGlobal(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Global>;
+
+    /**
+     * This endpoint allows you **query top 100 cryptocurrency global decentralized finance (defi) data including defi market cap, trading volume**.
+     * @summary Global De-Fi Market Data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GlobalApiInterface
+     */
+    globalDeFiRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GlobalDeFi>>;
+
+    /**
+     * This endpoint allows you **query top 100 cryptocurrency global decentralized finance (defi) data including defi market cap, trading volume**.
+     * Global De-Fi Market Data
+     */
+    globalDeFi(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GlobalDeFi>;
+
+    /**
+     * This endpoint allows you to **query historical global market cap and volume data by number of days away from now**
+     * @summary 💼 Global Market Cap Chart Data
+     * @param {'1' | '7' | '14' | '30' | '90' | '180' | '365' | 'max'} days data up to number of days ago  &lt;br&gt;Valid values: any integer 
+     * @param {string} [vsCurrency] target currency of market cap, default: usd &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies) 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GlobalApiInterface
+     */
+    globalMarketCapChartRaw(requestParameters: GlobalMarketCapChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GlobalMarketCapChart>>;
+
+    /**
+     * This endpoint allows you to **query historical global market cap and volume data by number of days away from now**
+     * 💼 Global Market Cap Chart Data
+     */
+    globalMarketCapChart(requestParameters: GlobalMarketCapChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GlobalMarketCapChart>;
+
+}
+
+/**
  * 
  */
-export class GlobalApi extends runtime.BaseAPI {
+export class GlobalApi extends runtime.BaseAPI implements GlobalApiInterface {
 
     /**
      * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.

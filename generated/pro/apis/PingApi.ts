@@ -23,9 +23,33 @@ import {
 } from '../models/index';
 
 /**
+ * PingApi - interface
+ * 
+ * @export
+ * @interface PingApiInterface
+ */
+export interface PingApiInterface {
+    /**
+     * This endpoint allows you to **check the API server status**.
+     * @summary Check API server status
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PingApiInterface
+     */
+    pingServerRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Ping>>;
+
+    /**
+     * This endpoint allows you to **check the API server status**.
+     * Check API server status
+     */
+    pingServer(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Ping>;
+
+}
+
+/**
  * 
  */
-export class PingApi extends runtime.BaseAPI {
+export class PingApi extends runtime.BaseAPI implements PingApiInterface {
 
     /**
      * This endpoint allows you to **check the API server status**.

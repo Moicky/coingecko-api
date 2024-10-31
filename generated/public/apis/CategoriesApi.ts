@@ -30,9 +30,49 @@ export interface CoinsCategoriesRequest {
 }
 
 /**
+ * CategoriesApi - interface
+ * 
+ * @export
+ * @interface CategoriesApiInterface
+ */
+export interface CategoriesApiInterface {
+    /**
+     * This endpoint allows you to **query all the coins categories with market data (market cap, volume, etc.) on CoinGecko**.
+     * @summary Coins Categories List with Market Data
+     * @param {'market_cap_desc' | 'market_cap_asc' | 'name_desc' | 'name_asc' | 'market_cap_change_24h_desc' | 'market_cap_change_24h_asc'} [order] sort results by field, default: market_cap_desc
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApiInterface
+     */
+    coinsCategoriesRaw(requestParameters: CoinsCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Categories>>;
+
+    /**
+     * This endpoint allows you to **query all the coins categories with market data (market cap, volume, etc.) on CoinGecko**.
+     * Coins Categories List with Market Data
+     */
+    coinsCategories(requestParameters: CoinsCategoriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Categories>;
+
+    /**
+     * This endpoint allows you to **query all the coins categories on CoinGecko**.
+     * @summary Coins Categories List (ID Map)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof CategoriesApiInterface
+     */
+    coinsCategoriesListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CategoriesList>>;
+
+    /**
+     * This endpoint allows you to **query all the coins categories on CoinGecko**.
+     * Coins Categories List (ID Map)
+     */
+    coinsCategoriesList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CategoriesList>;
+
+}
+
+/**
  * 
  */
-export class CategoriesApi extends runtime.BaseAPI {
+export class CategoriesApi extends runtime.BaseAPI implements CategoriesApiInterface {
 
     /**
      * This endpoint allows you to **query all the coins categories with market data (market cap, volume, etc.) on CoinGecko**.

@@ -47,9 +47,78 @@ export interface SimpleTokenPriceRequest {
 }
 
 /**
+ * SimpleApi - interface
+ * 
+ * @export
+ * @interface SimpleApiInterface
+ */
+export interface SimpleApiInterface {
+    /**
+     * This endpoint allows you to **query the prices of one or more coins by using their unique Coin API IDs**.
+     * @summary Coin Price by IDs
+     * @param {string} ids coins\&#39; ids, comma-separated if querying more than 1 coin.  &lt;br&gt;*refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {string} vsCurrencies target currency of coins, comma-separated if querying more than 1 currency.  &lt;br&gt;*refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {boolean} [includeMarketCap] include market cap, default: false 
+     * @param {boolean} [include24hrVol] include 24hr volume, default: false
+     * @param {boolean} [include24hrChange] include 24hr change, default: false
+     * @param {boolean} [includeLastUpdatedAt] include last updated price time in UNIX, default: false
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SimpleApiInterface
+     */
+    simplePriceRaw(requestParameters: SimplePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimplePrice200Response>>;
+
+    /**
+     * This endpoint allows you to **query the prices of one or more coins by using their unique Coin API IDs**.
+     * Coin Price by IDs
+     */
+    simplePrice(requestParameters: SimplePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimplePrice200Response>;
+
+    /**
+     * This endpoint allows you to **query all the supported currencies on CoinGecko**.
+     * @summary Supported Currencies List
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SimpleApiInterface
+     */
+    simpleSupportedCurrenciesRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<string>>>;
+
+    /**
+     * This endpoint allows you to **query all the supported currencies on CoinGecko**.
+     * Supported Currencies List
+     */
+    simpleSupportedCurrencies(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<string>>;
+
+    /**
+     * This endpoint allows you to **query a token price by using token contract address**.
+     * @summary Coin Price by Token Addresses
+     * @param {string} id asset platform\&#39;s id  &lt;br&gt;*refers to [&#x60;/asset_platforms&#x60;](/reference/asset-platforms-list).
+     * @param {string} contractAddresses the contract addresses of tokens, comma-separated if querying more than 1 token\&#39;s contract address
+     * @param {string} vsCurrencies target currency of coins, comma-separated if querying more than 1 currency.  &lt;br&gt; *refers to [&#x60;/simple/supported_vs_currencies&#x60;](/reference/simple-supported-currencies).
+     * @param {boolean} [includeMarketCap] include market capitalization, default: false
+     * @param {boolean} [include24hrVol] include 24hr volume, default: false
+     * @param {boolean} [include24hrChange] include 24hr change  default: false
+     * @param {boolean} [includeLastUpdatedAt] include last updated price time in UNIX , default: false
+     * @param {'full' | '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18'} [precision] decimal place for currency price value 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SimpleApiInterface
+     */
+    simpleTokenPriceRaw(requestParameters: SimpleTokenPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SimpleTokenPrice200Response>>;
+
+    /**
+     * This endpoint allows you to **query a token price by using token contract address**.
+     * Coin Price by Token Addresses
+     */
+    simpleTokenPrice(requestParameters: SimpleTokenPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SimpleTokenPrice200Response>;
+
+}
+
+/**
  * 
  */
-export class SimpleApi extends runtime.BaseAPI {
+export class SimpleApi extends runtime.BaseAPI implements SimpleApiInterface {
 
     /**
      * This endpoint allows you to **query the prices of one or more coins by using their unique Coin API IDs**.

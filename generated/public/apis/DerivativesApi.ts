@@ -43,9 +43,83 @@ export interface DerivativesExchangesIdRequest {
 }
 
 /**
+ * DerivativesApi - interface
+ * 
+ * @export
+ * @interface DerivativesApiInterface
+ */
+export interface DerivativesApiInterface {
+    /**
+     * This endpoint allows you to **query all the derivatives exchanges with related data (id, name, open interest, .... etc) on CoinGecko**.
+     * @summary Derivatives Exchanges List with Data
+     * @param {'name_asc' | 'name_desc' | 'open_interest_btc_asc' | 'open_interest_btc_desc' | 'trade_volume_24h_btc_asc' | 'trade_volume_24h_btc_desc'} [order] use this to sort the order of responses, default: open_interest_btc_desc
+     * @param {number} [perPage] total results per page
+     * @param {number} [page] page through results, default: 1
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DerivativesApiInterface
+     */
+    derivativesExchangesRaw(requestParameters: DerivativesExchangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DerivativesExchanges>>;
+
+    /**
+     * This endpoint allows you to **query all the derivatives exchanges with related data (id, name, open interest, .... etc) on CoinGecko**.
+     * Derivatives Exchanges List with Data
+     */
+    derivativesExchanges(requestParameters: DerivativesExchangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DerivativesExchanges>;
+
+    /**
+     * This endpoint allows you to **query the derivatives exchange’s related data (id, name, open interest, .... etc) based on the exchanges’ id**.
+     * @summary Derivatives Exchange Data by ID
+     * @param {string} id derivative exchange id &lt;br&gt; *refers to [&#x60;/derivatives/exchanges/list&#x60;](/reference/derivatives-exchanges-list).
+     * @param {'all' | 'unexpired'} [includeTickers] include tickers data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DerivativesApiInterface
+     */
+    derivativesExchangesIdRaw(requestParameters: DerivativesExchangesIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DerivativesExchangesID>>;
+
+    /**
+     * This endpoint allows you to **query the derivatives exchange’s related data (id, name, open interest, .... etc) based on the exchanges’ id**.
+     * Derivatives Exchange Data by ID
+     */
+    derivativesExchangesId(requestParameters: DerivativesExchangesIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DerivativesExchangesID>;
+
+    /**
+     * This endpoint allows you to **query all the derivatives exchanges with id and name on CoinGecko**.
+     * @summary Derivatives Exchanges List (ID Map)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DerivativesApiInterface
+     */
+    derivativesExchangesListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DerivativesExchangesList>>;
+
+    /**
+     * This endpoint allows you to **query all the derivatives exchanges with id and name on CoinGecko**.
+     * Derivatives Exchanges List (ID Map)
+     */
+    derivativesExchangesList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DerivativesExchangesList>;
+
+    /**
+     * This endpoint allows you to **query all the tickers from derivatives exchanges on CoinGecko**.
+     * @summary Derivatives Tickers List
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof DerivativesApiInterface
+     */
+    derivativesTickersRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DerivativesTickersList>>;
+
+    /**
+     * This endpoint allows you to **query all the tickers from derivatives exchanges on CoinGecko**.
+     * Derivatives Tickers List
+     */
+    derivativesTickers(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DerivativesTickersList>;
+
+}
+
+/**
  * 
  */
-export class DerivativesApi extends runtime.BaseAPI {
+export class DerivativesApi extends runtime.BaseAPI implements DerivativesApiInterface {
 
     /**
      * This endpoint allows you to **query all the derivatives exchanges with related data (id, name, open interest, .... etc) on CoinGecko**.

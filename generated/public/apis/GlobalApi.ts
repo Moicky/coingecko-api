@@ -26,9 +26,48 @@ import {
 } from '../models/index';
 
 /**
+ * GlobalApi - interface
+ * 
+ * @export
+ * @interface GlobalApiInterface
+ */
+export interface GlobalApiInterface {
+    /**
+     * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.
+     * @summary Crypto Global Market Data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GlobalApiInterface
+     */
+    cryptoGlobalRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Global>>;
+
+    /**
+     * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.
+     * Crypto Global Market Data
+     */
+    cryptoGlobal(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Global>;
+
+    /**
+     * This endpoint allows you **query top 100 cryptocurrency global decentralized finance (defi) data including defi market cap, trading volume**.
+     * @summary Global De-Fi Market Data
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof GlobalApiInterface
+     */
+    globalDeFiRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GlobalDeFi>>;
+
+    /**
+     * This endpoint allows you **query top 100 cryptocurrency global decentralized finance (defi) data including defi market cap, trading volume**.
+     * Global De-Fi Market Data
+     */
+    globalDeFi(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GlobalDeFi>;
+
+}
+
+/**
  * 
  */
-export class GlobalApi extends runtime.BaseAPI {
+export class GlobalApi extends runtime.BaseAPI implements GlobalApiInterface {
 
     /**
      * This endpoint allows you **query cryptocurrency global data including active cryptocurrencies, markets, total crypto market cap and etc**.

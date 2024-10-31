@@ -55,9 +55,104 @@ export interface ExchangesIdVolumeChartRequest {
 }
 
 /**
+ * ExchangesApi - interface
+ * 
+ * @export
+ * @interface ExchangesApiInterface
+ */
+export interface ExchangesApiInterface {
+    /**
+     * This endpoint allows you to **query all the supported exchanges with exchanges’ data (id, name, country, .... etc) that have active trading volumes on CoinGecko**.
+     * @summary Exchanges List with data
+     * @param {number} [perPage] total results per page, default: 100 &lt;br&gt; Valid values: 1...250
+     * @param {number} [page] page through results, default: 1
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangesApiInterface
+     */
+    exchangesRaw(requestParameters: ExchangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Exchanges>>;
+
+    /**
+     * This endpoint allows you to **query all the supported exchanges with exchanges’ data (id, name, country, .... etc) that have active trading volumes on CoinGecko**.
+     * Exchanges List with data
+     */
+    exchanges(requestParameters: ExchangesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Exchanges>;
+
+    /**
+     * This endpoint allows you to **query exchange’s data (name, year established, country, .... etc), exchange volume in BTC and top 100 tickers based on exchange’s id**.
+     * @summary Exchange Data by ID
+     * @param {string} id exchange id &lt;br&gt; *refers to [&#x60;/exchanges/list&#x60;](/reference/exchanges-list).
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangesApiInterface
+     */
+    exchangesIdRaw(requestParameters: ExchangesIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExchangeData>>;
+
+    /**
+     * This endpoint allows you to **query exchange’s data (name, year established, country, .... etc), exchange volume in BTC and top 100 tickers based on exchange’s id**.
+     * Exchange Data by ID
+     */
+    exchangesId(requestParameters: ExchangesIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExchangeData>;
+
+    /**
+     * This endpoint allows you to **query exchange\'s tickers based on exchange’s id**.
+     * @summary Exchange Tickers by ID
+     * @param {string} id exchange id &lt;br&gt; *refers to [&#x60;/exchanges/list&#x60;](/reference/exchanges-list).
+     * @param {string} [coinIds] filter tickers by coin_ids, comma-separated if querying more than 1 coin &lt;br&gt; *refers to [&#x60;/coins/list&#x60;](/reference/coins-list).
+     * @param {boolean} [includeExchangeLogo] include exchange logo, default: false
+     * @param {number} [page] page through results
+     * @param {boolean} [depth] include 2% orderbook depth (Example: cost_to_move_up_usd &amp; cost_to_move_down_usd),default: false
+     * @param {'trust_score_desc' | 'trust_score_asc' | 'volume_desc' | 'volume_asc'} [order] use this to sort the order of responses, default: trust_score_desc
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangesApiInterface
+     */
+    exchangesIdTickersRaw(requestParameters: ExchangesIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExchangeTickers>>;
+
+    /**
+     * This endpoint allows you to **query exchange\'s tickers based on exchange’s id**.
+     * Exchange Tickers by ID
+     */
+    exchangesIdTickers(requestParameters: ExchangesIdTickersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExchangeTickers>;
+
+    /**
+     * This endpoint allows you to **query the historical volume chart data with time in UNIX and trading volume data in BTC based on exchange’s id**.
+     * @summary Exchange Volume Chart by ID
+     * @param {string} id exchange id or derivatives exchange id &lt;br&gt; *refers to [&#x60;/exchanges/list&#x60;](/reference/exchanges-list) or [&#x60;/derivatives/exchanges/list&#x60;](/reference/derivatives-exchanges-list).
+     * @param {'1' | '7' | '14' | '30' | '90' | '180' | '365'} days data up to number of days ago
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangesApiInterface
+     */
+    exchangesIdVolumeChartRaw(requestParameters: ExchangesIdVolumeChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Array<number>>>>;
+
+    /**
+     * This endpoint allows you to **query the historical volume chart data with time in UNIX and trading volume data in BTC based on exchange’s id**.
+     * Exchange Volume Chart by ID
+     */
+    exchangesIdVolumeChart(requestParameters: ExchangesIdVolumeChartRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Array<number>>>;
+
+    /**
+     * This endpoint allows you to **query all the exchanges with id and name**.
+     * @summary Exchanges List (ID Map)
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ExchangesApiInterface
+     */
+    exchangesListRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExchangesList>>;
+
+    /**
+     * This endpoint allows you to **query all the exchanges with id and name**.
+     * Exchanges List (ID Map)
+     */
+    exchangesList(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ExchangesList>;
+
+}
+
+/**
  * 
  */
-export class ExchangesApi extends runtime.BaseAPI {
+export class ExchangesApi extends runtime.BaseAPI implements ExchangesApiInterface {
 
     /**
      * This endpoint allows you to **query all the supported exchanges with exchanges’ data (id, name, country, .... etc) that have active trading volumes on CoinGecko**.
