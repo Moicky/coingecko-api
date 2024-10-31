@@ -13,7 +13,7 @@
  */
 
 
-export const BASE_PATH = "https://pro-api.coingecko.com/api/v3/onchain".replace(/\/+$/, "");
+export const BASE_PATH = "https://api.geckoterminal.com/api/v2".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
