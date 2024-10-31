@@ -1,13 +1,33 @@
 {
   "name": "@moicky/coingecko-api",
-  "version": "3.1.0",
-  "description": "",
+  "version": "3.1.1",
   "type": "module",
+  "license": "MIT",
+  "description": "TypeScript wrapper for the Coingecko public and pro APIs",
+  "homepage": "https://github.com/Moicky/coingecko-api#readme",
+  "author": {
+    "name": "Moicky",
+    "url": "https://github.com/Moicky"
+  },
+  "bugs": {
+    "url": "https://github.com/Moicky/coingecko-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Moicky/coingecko-api.git"
+  },
   "scripts": {
     "generate": "node ./generate.js && tsc"
   },
   "keywords": [],
+  "main": "./dist/public/index.js",
+  "types": "./dist/public/index.d.ts",
   "exports": {
+    ".": {
+      "default": "./dist/public/index.js",
+      "import": "./dist/public/index.js",
+      "types": "./dist/public/index.d.ts"
+    },
     "./public": {
       "default": "./dist/public/index.js",
       "import": "./dist/public/index.js",
@@ -19,13 +39,10 @@
       "types": "./dist/pro/index.d.ts"
     }
   },
-  "author": "",
   "files": [
     "dist",
-    "docs",
     "readme.md"
   ],
-  "license": "MIT",
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^2.15.0",
     "typescript": "^5.6.3"
